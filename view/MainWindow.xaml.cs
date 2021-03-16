@@ -19,7 +19,7 @@ namespace CheckInByQRCode.view
     /// </summary>
     public partial class MainWindow : Window,IMainWindow
     {
-
+        private string userName="";
         public int SelectIndexEvent { get => gvEvent.SelectedIndex; set => gvEvent.SelectedIndex=value; }
         public int SelectIndexGroup { get => gvGroup.SelectedIndex; set => gvGroup.SelectedIndex=value; }
         public int SelectIndexOldEvent { get => gvOldEvent.SelectedIndex; set => gvOldEvent.SelectedIndex=value; }
@@ -30,10 +30,12 @@ namespace CheckInByQRCode.view
         public IEnumerable DataGroup { get => gvGroup.ItemsSource; set => gvGroup.ItemsSource=value; }
         public IEnumerable DataOldEvent { get => gvOldEvent.ItemsSource; set => gvOldEvent.ItemsSource=value; }
         public Visibility Hidden { set => this.Visibility=value; }
+        public string UserName { get => userName; set => userName=value; }
 
-        public MainWindow()
+        public MainWindow(string userName)
         {
             InitializeComponent();
+            this.userName = userName;
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

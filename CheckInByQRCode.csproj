@@ -14,11 +14,18 @@
   <ItemGroup>
     <PackageReference Include="Dragablz" Version="0.0.3.223" />
     <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="modal\" />
     <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DatabaseAss">
+      <HintPath>C:\Users\Gia Nguyen\Downloads\DatabaseAss.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

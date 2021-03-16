@@ -28,8 +28,12 @@ namespace CheckInByQRCode
         public string UserName { get { if (tcMainTab.SelectedIndex == 0) { return txtUserName.Text; } else { return txtUserNameSignUp.Text; }  }  set { if (tcMainTab.SelectedIndex == 0) { txtUserName.Text = value; } else { txtUserNameSignUp.Text = value; } } }
         public string Password { get { if (tcMainTab.SelectedIndex == 0) { return txtPassword.Password; } else { return txtPasswordSignUp.Password; } } set { if (tcMainTab.SelectedIndex == 0) { txtPassword.Password = value; } else { txtPasswordSignUp.Password = value; } } }
         public string Fullname { get => txtFullnameSignUp.Text; set => txtFullnameSignUp.Text=value; }
-        public string Email { get => txtEmailSignUp.Text; set =>txtEmailSignUp.Text=value; }
+        public string RePassword { get => txtRePasswordSignUp.Password; set =>txtRePasswordSignUp.Password=value; }
         public int TabIndex { get => tcMainTab.SelectedIndex; set=> tcMainTab.SelectedIndex= value; }
+        public Visibility Hidden { set => this.Visibility=value; }
+        public string Status { get => txtStatus.Text; set => txtStatus.Text=value; }
+        public string StatusSignUp { get => txtStatusSignUp.Text; set => txtStatusSignUp.Text=value; }
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -61,7 +65,11 @@ namespace CheckInByQRCode
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-
+             LoginPresenter loginPresenter = new LoginPresenter(this);
+             if (loginPresenter.Login())
+             {
+                 this.Close();
+             }
         }
 
         private void btnSignInWithGoogle_Click(object sender, RoutedEventArgs e)

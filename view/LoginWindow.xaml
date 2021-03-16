@@ -44,6 +44,7 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </TabItem.LayoutTransform>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock
                                 DockPanel.Dock="Top"
@@ -76,9 +77,12 @@
                                 <Button x:Name="btnGotoSignUp" Click="btnGotoSignUp_Click"
                                 Style="{StaticResource MaterialDesignOutlinedButton}"
                                 MinWidth="140">
-                                Sign up
+                                    Sign up
                                 </Button>
-                            </StackPanel>
+                             </StackPanel>
+                            
+                        </StackPanel>
+                            <TextBlock x:Name="txtStatus" Height="20" Margin="0,70,0,0" TextAlignment="Center"></TextBlock>
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="Sign up" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="200">
@@ -90,6 +94,7 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </TabItem.LayoutTransform>
+                        <StackPanel VerticalAlignment="Bottom">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock
                                 DockPanel.Dock="Top"
@@ -116,10 +121,10 @@
                                 <PasswordBox x:Name="txtPasswordSignUp" materialDesign:HintAssist.Hint="Password" materialDesign:TextFieldAssist.HasClearButton="True" MinWidth="250" MaxWidth="250"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                <materialDesign:PackIcon Kind="Email" Margin="0 4 3 0"/>
-                                <TextBox x:Name="txtEmailSignUp" materialDesign:HintAssist.Hint="Email" MinWidth="250" MaxWidth="250">
-                                </TextBox>
+                                    <materialDesign:PackIcon Kind="Key" Margin="0 4 3 0"/>
+                                    <PasswordBox x:Name="txtRePasswordSignUp" materialDesign:HintAssist.Hint="Confirm password" materialDesign:TextFieldAssist.HasClearButton="True" MinWidth="250" MaxWidth="250"/>
                             </StackPanel>
+                                
                             <Button x:Name="btnSignUp" Click="btnSignUp_Click"
                                 Style="{DynamicResource MaterialDesignRaisedDarkButton}"
                                 Width="200"
@@ -127,9 +132,12 @@
                                 Sign up
                             </Button>
                         </StackPanel>
+                            <TextBlock x:Name="txtStatusSignUp" Height="20" Margin="0,20,0,0" TextAlignment="Center"></TextBlock>
+                        </StackPanel>
                     </TabItem>
                 </TabControl>
             </materialDesign:Card>
+            
         </DockPanel>
     </DockPanel>
 </Window>

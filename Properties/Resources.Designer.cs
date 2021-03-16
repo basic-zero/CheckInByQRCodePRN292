@@ -59,5 +59,14 @@ namespace CheckInByQRCode.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Source=localhost\sqlexpress;Initial Catalog=CheckInByQRCode;User ID=sa;Password=sa.
+        /// </summary>
+        internal static string strConnection {
+            get {
+                return ResourceManager.GetString("strConnection", resourceCulture);
+            }
+        }
     }
 }

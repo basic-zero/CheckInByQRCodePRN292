@@ -23,7 +23,7 @@
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Width="50" PreviewMouseDown="btnLogout_PreviewMouseDown"
                         Style="{StaticResource MaterialDesignMenuCommandButtonStyle}" TextElement.Foreground="Teal" x:Name="btnLogout">
-                        Logout
+                        Sign out
                     </Button>
                     <Button PreviewMouseDown="btnMinimize_PreviewMouseDown"
                         Style="{StaticResource MaterialDesignMenuCommandButtonStyle}" TextElement.Foreground="Teal" x:Name="btnMinimize">
