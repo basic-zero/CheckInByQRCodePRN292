@@ -19,9 +19,9 @@
                 <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Foreground="Teal" DockPanel.Dock="Left">
                     <materialDesign:PackIcon Kind="Qrcode" />
                 </TextBlock>
-                <TextBlock MinWidth="770" Foreground="Teal">Check in by QR Code</TextBlock>
+                <TextBlock MinWidth="760" Foreground="Teal" x:Name="txtTitle"></TextBlock>
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Width="50" PreviewMouseDown="btnLogout_PreviewMouseDown"
+                    <Button Width="60" PreviewMouseDown="btnLogout_PreviewMouseDown"
                         Style="{StaticResource MaterialDesignMenuCommandButtonStyle}" TextElement.Foreground="Teal" x:Name="btnLogout">
                         Sign out
                     </Button>

@@ -36,6 +36,7 @@ namespace CheckInByQRCode.view
         {
             InitializeComponent();
             this.userName = userName;
+            txtTitle.Text = "Check in by QR Code - " + userName;
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
