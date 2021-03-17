@@ -12,7 +12,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStyle="None"
-        mc:Ignorable="d" Height="420" Width="450" WindowStartupLocation="CenterScreen" WindowState="Normal"  MinHeight="620" MinWidth="900" MaxHeight="620" MaxWidth="900">
+        mc:Ignorable="d" Height="420" Width="450" WindowStartupLocation="CenterScreen" WindowState="Normal"  MinHeight="620" MinWidth="900" MaxHeight="620" MaxWidth="900" Loaded="Window_Loaded">
     <DockPanel>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top" PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown">
@@ -54,15 +54,15 @@
                                         <materialDesign:PackIcon Kind="MinusCircleOutline" />
                                  </Button>
                                 <TextBox x:Name="txtSearchEvent" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
-                                        Margin="2" materialDesign:HintAssist.Hint="Search">
+                                        Margin="2" materialDesign:HintAssist.Hint="Search" TextChanged="txtSearchEvent_TextChanged">
                                     
                                 </TextBox>
                                 
                                 </ToolBar>
                         </ToolBarTray>
-                        <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvEvent">
-                            
-                        </DataGrid>
+                        <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvEvent" IsReadOnly="True">
+                                
+                            </DataGrid>
                         </DockPanel>
                     </TabItem>
                     <TabItem Header="Groups" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="100">

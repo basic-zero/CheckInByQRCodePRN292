@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 
@@ -22,5 +23,7 @@ namespace CheckInByQRCode.view
 
         Visibility Hidden { set; }
         string UserName { get; set; }
+        string FullName { set; }
+        DataTable EventTable { get; set; }
     }
 }

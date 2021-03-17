@@ -63,25 +63,19 @@
                                 <materialDesign:PackIcon Kind="Key" Margin="0 4 3 0"/>
                                 <PasswordBox x:Name="txtPassword" materialDesign:HintAssist.Hint="Password" materialDesign:TextFieldAssist.HasClearButton="True" MinWidth="250" MaxWidth="250"/>
                             </StackPanel>
-                            <Button x:Name="btnSignIn" Click="btnSignIn_Click"
+                                <Button x:Name="btnSignIn" Click="btnSignIn_Click"
                                 Style="{DynamicResource MaterialDesignRaisedDarkButton}"
                                 Width="200"
                                 Margin="0 20 0 10">
-                                Sign in
-                            </Button>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button x:Name="btnSignInWithGoogle" Click="btnSignInWithGoogle_Click"
-                                Style="{DynamicResource MaterialDesignOutlinedButton}"
-                                Content="{materialDesign:PackIcon Kind=Google}"
-                                Margin="0 0 10 0" />
+                                    Sign in
+                                </Button>
                                 <Button x:Name="btnGotoSignUp" Click="btnGotoSignUp_Click"
                                 Style="{StaticResource MaterialDesignOutlinedButton}"
-                                MinWidth="140">
-                                    Sign up
-                                </Button>
-                             </StackPanel>
-                            
-                        </StackPanel>
+                                Width="200">
+                                        Sign up
+                                    </Button>
+
+                                </StackPanel>
                             <TextBlock x:Name="txtStatus" Height="20" Margin="0,70,0,0" TextAlignment="Center"></TextBlock>
                         </StackPanel>
                     </TabItem>

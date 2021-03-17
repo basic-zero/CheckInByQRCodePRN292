@@ -23,9 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="DatabaseAss">
-      <HintPath>C:\Users\Gia Nguyen\Downloads\DatabaseAss.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\DatabaseAss\DatabaseAss\DatabaseAss.csproj" />
   </ItemGroup>
 
   <ItemGroup>

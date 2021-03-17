@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,23 +21,25 @@ namespace CheckInByQRCode.view
     public partial class MainWindow : Window,IMainWindow
     {
         private string userName="";
+        private DataTable eventTable = null;
         public int SelectIndexEvent { get => gvEvent.SelectedIndex; set => gvEvent.SelectedIndex=value; }
         public int SelectIndexGroup { get => gvGroup.SelectedIndex; set => gvGroup.SelectedIndex=value; }
         public int SelectIndexOldEvent { get => gvOldEvent.SelectedIndex; set => gvOldEvent.SelectedIndex=value; }
         public string SearchEvent { get => txtSearchEvent.Text; set => txtSearchEvent.Text=value; }
         public string SearchGroup { get => txtSearchGroup.Text; set => txtSearchGroup.Text=value; }
         public string SearchOldEvent { get => txtSearchOldEvent.Text; set => txtSearchOldEvent.Text=value; }
-        public IEnumerable DataEvent { get => gvEvent.ItemsSource; set => gvEvent.ItemsSource= value; }
+        public IEnumerable DataEvent { get => gvEvent.ItemsSource; set => gvEvent.ItemsSource=value; }
         public IEnumerable DataGroup { get => gvGroup.ItemsSource; set => gvGroup.ItemsSource=value; }
         public IEnumerable DataOldEvent { get => gvOldEvent.ItemsSource; set => gvOldEvent.ItemsSource=value; }
         public Visibility Hidden { set => this.Visibility=value; }
         public string UserName { get => userName; set => userName=value; }
+        public string FullName { set => txtTitle.Text = "Check in by QR Code - " + value; }
+        public DataTable EventTable { get => eventTable; set => eventTable= value; }
 
         public MainWindow(string userName)
         {
             InitializeComponent();
             this.userName = userName;
-            txtTitle.Text = "Check in by QR Code - " + userName;
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -68,6 +71,18 @@ namespace CheckInByQRCode.view
         {
             MainPresenter mainPresenter = new MainPresenter(this);
             mainPresenter.ShowAddEvent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.LoadEvent();
+        }
+
+        private void txtSearchEvent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.SearchEvent();
         }
     }
 }

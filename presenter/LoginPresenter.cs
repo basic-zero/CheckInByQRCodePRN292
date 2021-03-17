@@ -46,9 +46,12 @@ namespace CheckInByQRCode.presenter
             }
             UserDao userDao = new UserDao();
             userDao.MakeConnection(Properties.Resources.strConnection);
-            if(userDao.CheckLogin(loginWindow.UserName, loginWindow.Password))
+            string name = userDao.CheckLogin(loginWindow.UserName, loginWindow.Password);
+            if (name.Length!=0)
             {
                 MainWindow mainWindow = new MainWindow(loginWindow.UserName);
+                IMainWindow main = mainWindow;
+                main.FullName = name;
                 loginWindow.Hidden = System.Windows.Visibility.Hidden;
                 mainWindow.ShowDialog();
                 return true;
@@ -56,5 +59,7 @@ namespace CheckInByQRCode.presenter
             loginWindow.Status = "Account not exist";
             return false;
         }
+
+        
     }
 }
