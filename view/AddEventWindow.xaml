@@ -12,7 +12,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStyle="None"
-        mc:Ignorable="d"  WindowStartupLocation="CenterScreen" WindowState="Normal"  MinHeight="440" MinWidth="300" MaxHeight="440" MaxWidth="300">
+        mc:Ignorable="d"  WindowStartupLocation="CenterScreen" WindowState="Normal"  MinHeight="460" MinWidth="300" MaxHeight="460" MaxWidth="300">
     <DockPanel>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top" PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown">
@@ -29,7 +29,7 @@
             </DockPanel>
             <materialDesign:Card 
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                MaxWidth="300" MaxHeight="420"  VerticalContentAlignment="Stretch" >
+                MaxWidth="300" MaxHeight="440"  VerticalContentAlignment="Stretch" >
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" Margin="0 10">
                         <materialDesign:PackIcon Kind="CardAccountDetails" Margin="0 4 3 0"/>
@@ -58,6 +58,7 @@
                             
                         </ListBox>
                     </StackPanel>
+                    <TextBlock x:Name="txtStatus" Height="20"  TextAlignment="Center"></TextBlock>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
                         <Button x:Name="btnAddEvent" Click="btnAddEvent_Click"
                                 Style="{DynamicResource MaterialDesignRaisedDarkButton}"

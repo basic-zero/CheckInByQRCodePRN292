@@ -20,7 +20,6 @@ namespace CheckInByQRCode.view
     /// </summary>
     public partial class MainWindow : Window,IMainWindow
     {
-        private string userName="";
         private DataTable eventTable = null;
         public int SelectIndexEvent { get => gvEvent.SelectedIndex; set => gvEvent.SelectedIndex=value; }
         public int SelectIndexGroup { get => gvGroup.SelectedIndex; set => gvGroup.SelectedIndex=value; }
@@ -32,14 +31,11 @@ namespace CheckInByQRCode.view
         public IEnumerable DataGroup { get => gvGroup.ItemsSource; set => gvGroup.ItemsSource=value; }
         public IEnumerable DataOldEvent { get => gvOldEvent.ItemsSource; set => gvOldEvent.ItemsSource=value; }
         public Visibility Hidden { set => this.Visibility=value; }
-        public string UserName { get => userName; set => userName=value; }
-        public string FullName { set => txtTitle.Text = "Check in by QR Code - " + value; }
         public DataTable EventTable { get => eventTable; set => eventTable= value; }
 
-        public MainWindow(string userName)
+        public MainWindow()
         {
             InitializeComponent();
-            this.userName = userName;
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -71,6 +67,7 @@ namespace CheckInByQRCode.view
         {
             MainPresenter mainPresenter = new MainPresenter(this);
             mainPresenter.ShowAddEvent();
+            mainPresenter.LoadEvent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

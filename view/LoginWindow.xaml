@@ -115,7 +115,7 @@
                                 <PasswordBox x:Name="txtPasswordSignUp" materialDesign:HintAssist.Hint="Password" materialDesign:TextFieldAssist.HasClearButton="True" MinWidth="250" MaxWidth="250"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                    <materialDesign:PackIcon Kind="Key" Margin="0 4 3 0"/>
+                                    <materialDesign:PackIcon Kind="KeyChain" Margin="0 4 3 0"/>
                                     <PasswordBox x:Name="txtRePasswordSignUp" materialDesign:HintAssist.Hint="Confirm password" materialDesign:TextFieldAssist.HasClearButton="True" MinWidth="250" MaxWidth="250"/>
                             </StackPanel>
                                 

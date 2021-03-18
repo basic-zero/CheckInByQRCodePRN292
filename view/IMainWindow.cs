@@ -22,8 +22,6 @@ namespace CheckInByQRCode.view
         string SearchOldEvent { get; set; }
 
         Visibility Hidden { set; }
-        string UserName { get; set; }
-        string FullName { set; }
         DataTable EventTable { get; set; }
     }
 }

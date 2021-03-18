@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CheckInByQRCode.presenter;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -21,7 +22,7 @@ namespace CheckInByQRCode.view
         public string EventName { get => txtEventName.Text; set => txtEventName.Text=value; }
         public string Desciption { get => txtDesciption.Text; set => txtDesciption.Text= value; }
         public IEnumerable Group { get => lsbGroup.ItemsSource; set => lsbGroup.ItemsSource= value; }
-
+        public string Status { get => txtStatus.Text; set => txtStatus.Text = value; }
         public AddEventWindow()
         {
             InitializeComponent();
@@ -40,7 +41,11 @@ namespace CheckInByQRCode.view
 
         private void btnAddEvent_Click(object sender, RoutedEventArgs e)
         {
-
+            AddEventPresenter addEventPresenter = new AddEventPresenter(this);
+            if (addEventPresenter.AddEvent())
+            {
+                this.Close();
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

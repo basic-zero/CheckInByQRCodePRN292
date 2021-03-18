@@ -13,5 +13,7 @@ namespace CheckInByQRCode
     /// </summary>
     public partial class App : Application
     {
+        public string FullName { get; set; }
+        public string UserName { get; set; }
     }
 }

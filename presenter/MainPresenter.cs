@@ -35,8 +35,8 @@ namespace CheckInByQRCode.presenter
         {
             EventDao eventDao = new EventDao();
             eventDao.MakeConnection(Properties.Resources.strConnection);
-            mainWindow.EventTable = eventDao.ReadData(mainWindow.UserName);
-            DataTable dataTable = eventDao.ReadData(mainWindow.UserName);
+            mainWindow.EventTable = eventDao.ReadData(((App)Application.Current).UserName);
+            DataTable dataTable = eventDao.ReadData(((App)Application.Current).UserName);
             dataTable.Columns.RemoveAt(0);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
