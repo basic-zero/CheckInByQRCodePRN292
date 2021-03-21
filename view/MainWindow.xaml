@@ -35,97 +35,136 @@
                     </Button>
                 </StackPanel>
             </DockPanel>
-            <materialDesign:Card 
-                materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                MaxWidth="900" MaxHeight="600"  VerticalContentAlignment="Stretch" >
-                <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}" TabStripPlacement="Left" x:Name="tcMainTab">
-                    <TabItem Header="Events" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="100">
-                        <DockPanel>
-                        <ToolBarTray DockPanel.Dock="Bottom">
-                            <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
-                                <Button x:Name="btnAddEvent" Click="btnAddEvent_Click"
-                                Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                Width="100" Margin="2">
-                                        <materialDesign:PackIcon Kind="PlusCircleOutline" />
-                                    </Button>
-                                <Button x:Name="btnDeleteEvent"
-                                Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                Width="100" Margin="2">
-                                        <materialDesign:PackIcon Kind="MinusCircleOutline" />
-                                 </Button>
-                                <TextBox x:Name="txtSearchEvent" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
+            <materialDesign:DialogHost DialogTheme="Inherit" >
+                <materialDesign:Card 
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    MaxWidth="900" MaxHeight="600"  VerticalContentAlignment="Stretch" >
+                    <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}" TabStripPlacement="Left" x:Name="tcMainTab">
+                        <TabItem Header="Events" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="100">
+                            <DockPanel>
+                                <ToolBarTray DockPanel.Dock="Bottom">
+                                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+                                        <Button x:Name="btnAddEvent" Click="btnAddEvent_Click"
+                                        Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                        Width="100" Margin="2">
+                                            <materialDesign:PackIcon Kind="PlusCircleOutline" />
+                                        </Button>
+                                        <Button  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="btnShowDeleteDialog"
+                                            Width="100" Margin="2" IsEnabled="False" >
+                                            <Button.CommandParameter>
+                                                <StackPanel  HorizontalAlignment="Center">
+                                                    <TextBlock Margin="10" Foreground="White">Are you sure delete this event</TextBlock>
+                                                    <StackPanel Orientation="Horizontal" Margin="35 10">
+                                                        <Button x:Name="btnDeleteEvent" Click="btnDeleteEvent_Click"
+                                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                            HorizontalAlignment="Center">
+                                                            YES
+                                                        </Button>
+                                                        <Button
+                                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                                            IsCancel="True"
+                                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                            HorizontalAlignment="Center">
+                                                            NO
+                                                        </Button>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Button.CommandParameter>
+                                            <materialDesign:PackIcon Kind="MinusCircleOutline" />
+                                        </Button>
+                                        <Button x:Name="btnUpdateEvent" 
+                                        Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                        Width="100" Margin="2" IsEnabled="False">
+                                            <materialDesign:PackIcon Kind="PencilOutline" />
+                                        </Button>
+                                        <TextBox x:Name="txtSearchEvent" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
                                         Margin="2" materialDesign:HintAssist.Hint="Search" TextChanged="txtSearchEvent_TextChanged">
-                                    
-                                </TextBox>
-                                
-                                </ToolBar>
-                        </ToolBarTray>
-                        <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvEvent" IsReadOnly="True">
-                                
-                            </DataGrid>
-                        </DockPanel>
-                    </TabItem>
-                    <TabItem Header="Groups" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="100">
-                        <DockPanel>
-                            <ToolBarTray DockPanel.Dock="Bottom">
-                                <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
-                                    <Button x:Name="btnAddGroup"
-                                Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                Width="100" Margin="2">
-                                        <materialDesign:PackIcon Kind="PlusCircleOutline" />
-                                    </Button>
-                                    <Button x:Name="btnDeleteGroup"
-                                Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                Width="100" Margin="2">
-                                        <materialDesign:PackIcon Kind="MinusCircleOutline" />
-                                    </Button>
-                                    <TextBox x:Name="txtSearchGroup" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
-                                        Margin="2" materialDesign:HintAssist.Hint="Search">
+                                        </TextBox>
+                                        <Button x:Name="btnProcessEvent" 
+                                        Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                        Width="100" Margin="2" IsEnabled="False">
+                                            <materialDesign:PackIcon Kind="ArrowRightCircle" />
+                                        </Button>
+                                    </ToolBar>
+                                </ToolBarTray>
+                                <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvEvent" IsReadOnly="True" SelectionChanged="gvEvent_SelectionChanged">
 
-                                    </TextBox>
+                                </DataGrid>
+                            </DockPanel>
+                        </TabItem>
+                        <TabItem Header="Groups" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="100">
+                            <DockPanel>
+                                <ToolBarTray DockPanel.Dock="Bottom">
+                                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+                                        <Button x:Name="btnAddGroup"
+                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                            Width="100" Margin="2">
+                                            <materialDesign:PackIcon Kind="PlusCircleOutline" />
+                                        </Button>
+                                        <Button x:Name="btnDeleteGroup"
+                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                            Width="100" Margin="2">
+                                            <materialDesign:PackIcon Kind="MinusCircleOutline" />
+                                        </Button>
+                                        <Button x:Name="btnUpdateGroup" 
+                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                            Width="100" Margin="2">
+                                            <materialDesign:PackIcon Kind="PencilOutline" />
+                                        </Button>
+                                        <TextBox x:Name="txtSearchGroup" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
+                                            Margin="2" materialDesign:HintAssist.Hint="Search">
 
-                                </ToolBar>
-                            </ToolBarTray>
-                            <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvGroup">
+                                        </TextBox>
+                                        <Button x:Name="btnProcessGroup" 
+                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                            Width="100" Margin="2">
+                                            <materialDesign:PackIcon Kind="ArrowRightCircle" />
+                                        </Button>
+                                    </ToolBar>
+                                </ToolBarTray>
+                                <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvGroup">
 
-                            </DataGrid>
-                        </DockPanel>
-                    </TabItem>
-                    <TabItem Header="Old Events" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="100">
-                        <DockPanel>
-                            <ToolBarTray DockPanel.Dock="Bottom">
-                                <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
-                                    <TextBox x:Name="txtSearchOldEvent" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
-                                        Margin="2" materialDesign:HintAssist.Hint="Search">
-                                    </TextBox>
-                                </ToolBar>
-                            </ToolBarTray>
-                            <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvOldEvent">
+                                </DataGrid>
+                            </DockPanel>
+                        </TabItem>
+                        <TabItem Header="Old Events" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="100">
+                            <DockPanel>
+                                <ToolBarTray DockPanel.Dock="Bottom">
+                                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+                                        <TextBox x:Name="txtSearchOldEvent" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
+                                            Margin="2" materialDesign:HintAssist.Hint="Search">
+                                        </TextBox>
+                                    </ToolBar>
+                                </ToolBarTray>
+                                <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvOldEvent">
 
-                            </DataGrid>
-                        </DockPanel>
-                    </TabItem>
-                    <TabItem Header="About" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="100">
-                        <DockPanel>
-                            <Image Source="/img/Logo.png" Width="200" Height="200" DockPanel.Dock="Top"></Image>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Style="{StaticResource MaterialDesignHeadline3TextBlock}" Foreground="Teal" TextAlignment="Center">
-                                    Check in by QRCode
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="100 20">
-                                    NTXTH Group
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="100 20">
-                                    Version: 1.0.0.0
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="100 20">
-                                   © 2021 NTXTH Group. All rights reserved. 
-                                </TextBlock>
-                            </StackPanel>
-                        </DockPanel>
-                    </TabItem>
-                </TabControl>
-            </materialDesign:Card>
+                                </DataGrid>
+                            </DockPanel>
+                        </TabItem>
+                        <TabItem Header="About" Style="{DynamicResource MaterialDesignNavigationRailTabItem}" Padding="0,0,0,0" MinWidth="100">
+                            <DockPanel>
+                                <Image Source="/img/Logo.png" Width="200" Height="200" DockPanel.Dock="Top"></Image>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource MaterialDesignHeadline3TextBlock}" Foreground="Teal" TextAlignment="Center">
+                                        Check in by QRCode
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="100 20">
+                                        NTXTH Group
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="100 20">
+                                        Version: 1.0.0.0
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="100 20">
+                                       © 2021 NTXTH Group. All rights reserved.
+                                    </TextBlock>
+                                </StackPanel>
+                            </DockPanel>
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </materialDesign:DialogHost>
         </DockPanel>
     </DockPanel>
 </Window>

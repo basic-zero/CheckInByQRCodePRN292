@@ -20,7 +20,8 @@ namespace CheckInByQRCode.view
     /// </summary>
     public partial class MainWindow : Window,IMainWindow
     {
-        private DataTable eventTable = null;
+        private object eventData = null;
+        public bool EventHasSelect { get => gvEvent.SelectedIndex >= 0; }
         public int SelectIndexEvent { get => gvEvent.SelectedIndex; set => gvEvent.SelectedIndex=value; }
         public int SelectIndexGroup { get => gvGroup.SelectedIndex; set => gvGroup.SelectedIndex=value; }
         public int SelectIndexOldEvent { get => gvOldEvent.SelectedIndex; set => gvOldEvent.SelectedIndex=value; }
@@ -31,11 +32,12 @@ namespace CheckInByQRCode.view
         public IEnumerable DataGroup { get => gvGroup.ItemsSource; set => gvGroup.ItemsSource=value; }
         public IEnumerable DataOldEvent { get => gvOldEvent.ItemsSource; set => gvOldEvent.ItemsSource=value; }
         public Visibility Hidden { set => this.Visibility=value; }
-        public DataTable EventTable { get => eventTable; set => eventTable= value; }
+        public object EventData { get => eventData; set => eventData=value; }
 
         public MainWindow()
         {
             InitializeComponent();
+            txtTitle.Text = "Check in by QR code - " + ((App)Application.Current).FullName;
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -79,7 +81,21 @@ namespace CheckInByQRCode.view
         private void txtSearchEvent_TextChanged(object sender, TextChangedEventArgs e)
         {
             MainPresenter mainPresenter = new MainPresenter(this);
-            mainPresenter.SearchEvent();
+            mainPresenter.LoadEvent();
+        }
+
+        private void btnDeleteEvent_Click(object sender, RoutedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.RemoveEvent();
+            mainPresenter.LoadEvent();
+        }
+
+        private void gvEvent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnShowDeleteDialog.IsEnabled = gvEvent.SelectedIndex >= 0;
+            btnUpdateEvent.IsEnabled = gvEvent.SelectedIndex >= 0;
+            btnProcessEvent.IsEnabled = gvEvent.SelectedIndex >= 0;
         }
     }
 }

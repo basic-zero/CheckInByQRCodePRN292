@@ -51,9 +51,9 @@ namespace CheckInByQRCode.presenter
             string name = userDao.CheckLogin(loginWindow.UserName, loginWindow.Password);
             if (name.Length!=0)
             {
-                MainWindow mainWindow = new MainWindow();
-                ((App)Application.Current).FullName=name;
+                ((App)Application.Current).FullName = name;
                 ((App)Application.Current).UserName = loginWindow.UserName;
+                MainWindow mainWindow = new MainWindow();
                 loginWindow.Hidden = System.Windows.Visibility.Hidden;
                 mainWindow.ShowDialog();
                 return true;
