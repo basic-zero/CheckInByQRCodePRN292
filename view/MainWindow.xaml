@@ -74,7 +74,7 @@
                                             </Button.CommandParameter>
                                             <materialDesign:PackIcon Kind="MinusCircleOutline" />
                                         </Button>
-                                        <Button x:Name="btnUpdateEvent" 
+                                        <Button x:Name="btnUpdateEvent"  Click="btnUpdateEvent_Click"
                                         Style="{DynamicResource MaterialDesignRaisedDarkButton}"
                                         Width="100" Margin="2" IsEnabled="False">
                                             <materialDesign:PackIcon Kind="PencilOutline" />

@@ -32,6 +32,17 @@ namespace CheckInByQRCode.presenter
             addEventWindow.ShowDialog();
         }
 
+        public void ShowUpdateEvent()
+        {
+            DetailWindow detailWindow = new DetailWindow("Update event");
+            IDetailWindow detail = detailWindow;
+            List<EventDto> events = (List<EventDto>)mainWindow.EventData;
+            detail.DetailName = events[mainWindow.SelectIndexEvent].Name;
+            detail.Desciption = events[mainWindow.SelectIndexEvent].Description;
+            detail.Id = events[mainWindow.SelectIndexEvent].Id;
+            detailWindow.ShowDialog();
+        }
+
         public void LoadEvent()
         {
             EventDao eventDao = new EventDao();

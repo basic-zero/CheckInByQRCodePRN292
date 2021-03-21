@@ -97,5 +97,12 @@ namespace CheckInByQRCode.view
             btnUpdateEvent.IsEnabled = gvEvent.SelectedIndex >= 0;
             btnProcessEvent.IsEnabled = gvEvent.SelectedIndex >= 0;
         }
+
+        private void btnUpdateEvent_Click(object sender, RoutedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.ShowUpdateEvent();
+            mainPresenter.LoadEvent();
+        }
     }
 }
