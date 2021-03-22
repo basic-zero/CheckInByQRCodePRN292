@@ -50,7 +50,7 @@
                                             <materialDesign:PackIcon Kind="PlusCircleOutline" />
                                         </Button>
                                         <Button  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="btnShowDeleteDialog"
+                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="btnShowDeleteDialogEvent"
                                             Width="100" Margin="2" IsEnabled="False" >
                                             <Button.CommandParameter>
                                                 <StackPanel  HorizontalAlignment="Center">
@@ -98,33 +98,53 @@
                             <DockPanel>
                                 <ToolBarTray DockPanel.Dock="Bottom">
                                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
-                                        <Button x:Name="btnAddGroup"
+                                        <Button x:Name="btnAddGroup" Click="btnAddGroup_Click"
                                             Style="{DynamicResource MaterialDesignRaisedDarkButton}"
                                             Width="100" Margin="2">
                                             <materialDesign:PackIcon Kind="PlusCircleOutline" />
                                         </Button>
-                                        <Button x:Name="btnDeleteGroup"
-                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                            Width="100" Margin="2">
+                                        <Button  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="btnShowDeleteDialogGroup"
+                                            Width="100" Margin="2"  IsEnabled="False" >
+                                            <Button.CommandParameter>
+                                                <StackPanel  HorizontalAlignment="Center">
+                                                    <TextBlock Margin="10" Foreground="White">Are you sure delete this group</TextBlock>
+                                                    <StackPanel Orientation="Horizontal" Margin="35 10">
+                                                        <Button x:Name="btnDeleteGroup" Click="btnDeleteGroup_Click"
+                                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                            HorizontalAlignment="Center">
+                                                            YES
+                                                        </Button>
+                                                        <Button
+                                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                                            IsCancel="True"
+                                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                            HorizontalAlignment="Center">
+                                                            NO
+                                                        </Button>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Button.CommandParameter>
                                             <materialDesign:PackIcon Kind="MinusCircleOutline" />
                                         </Button>
-                                        <Button x:Name="btnUpdateGroup" 
+                                        <Button x:Name="btnUpdateGroup"  Click="btnUpdateGroup_Click"
                                             Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                            Width="100" Margin="2">
+                                            Width="100" Margin="2" IsEnabled="False">
                                             <materialDesign:PackIcon Kind="PencilOutline" />
                                         </Button>
                                         <TextBox x:Name="txtSearchGroup" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
-                                            Margin="2" materialDesign:HintAssist.Hint="Search">
+                                            Margin="2" materialDesign:HintAssist.Hint="Search" TextChanged="txtSearchGroup_TextChanged">
 
                                         </TextBox>
                                         <Button x:Name="btnProcessGroup" 
                                             Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                            Width="100" Margin="2">
+                                            Width="100" Margin="2" IsEnabled="False">
                                             <materialDesign:PackIcon Kind="ArrowRightCircle" />
                                         </Button>
                                     </ToolBar>
                                 </ToolBarTray>
-                                <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvGroup">
+                                <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvGroup" SelectionChanged="gvGroup_SelectionChanged">
 
                                 </DataGrid>
                             </DockPanel>

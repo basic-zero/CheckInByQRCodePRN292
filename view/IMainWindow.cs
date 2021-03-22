@@ -23,5 +23,7 @@ namespace CheckInByQRCode.view
 
         Visibility Hidden { set; }
         object EventData { get; set; }
+        object GroupData { get; set; }
+        object OldEventData { get; set; }
     }
 }

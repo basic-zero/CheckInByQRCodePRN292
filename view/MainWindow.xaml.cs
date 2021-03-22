@@ -21,6 +21,8 @@ namespace CheckInByQRCode.view
     public partial class MainWindow : Window,IMainWindow
     {
         private object eventData = null;
+        private object groupData = null;
+        private object oldEventData = null;
         public bool EventHasSelect { get => gvEvent.SelectedIndex >= 0; }
         public int SelectIndexEvent { get => gvEvent.SelectedIndex; set => gvEvent.SelectedIndex=value; }
         public int SelectIndexGroup { get => gvGroup.SelectedIndex; set => gvGroup.SelectedIndex=value; }
@@ -33,6 +35,8 @@ namespace CheckInByQRCode.view
         public IEnumerable DataOldEvent { get => gvOldEvent.ItemsSource; set => gvOldEvent.ItemsSource=value; }
         public Visibility Hidden { set => this.Visibility=value; }
         public object EventData { get => eventData; set => eventData=value; }
+        public object GroupData { get => groupData; set => groupData=value; }
+        public object OldEventData { get => oldEventData; set => oldEventData=value; }
 
         public MainWindow()
         {
@@ -76,6 +80,7 @@ namespace CheckInByQRCode.view
         {
             MainPresenter mainPresenter = new MainPresenter(this);
             mainPresenter.LoadEvent();
+            mainPresenter.LoadGroup();
         }
 
         private void txtSearchEvent_TextChanged(object sender, TextChangedEventArgs e)
@@ -93,7 +98,7 @@ namespace CheckInByQRCode.view
 
         private void gvEvent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnShowDeleteDialog.IsEnabled = gvEvent.SelectedIndex >= 0;
+            btnShowDeleteDialogEvent.IsEnabled = gvEvent.SelectedIndex >= 0;
             btnUpdateEvent.IsEnabled = gvEvent.SelectedIndex >= 0;
             btnProcessEvent.IsEnabled = gvEvent.SelectedIndex >= 0;
         }
@@ -103,6 +108,40 @@ namespace CheckInByQRCode.view
             MainPresenter mainPresenter = new MainPresenter(this);
             mainPresenter.ShowUpdateEvent();
             mainPresenter.LoadEvent();
+        }
+
+        private void gvGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnShowDeleteDialogGroup.IsEnabled = gvGroup.SelectedIndex >= 0;
+            btnUpdateGroup.IsEnabled = gvGroup.SelectedIndex >= 0;
+            btnProcessGroup.IsEnabled = gvGroup.SelectedIndex >= 0;
+        }
+
+        private void btnDeleteGroup_Click(object sender, RoutedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.RemoveGroup();
+            mainPresenter.LoadGroup();
+        }
+
+        private void txtSearchGroup_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.LoadGroup();
+        }
+
+        private void btnAddGroup_Click(object sender, RoutedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.ShowAddGroup();
+            mainPresenter.LoadGroup();
+        }
+
+        private void btnUpdateGroup_Click(object sender, RoutedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.ShowUpdateGroup();
+            mainPresenter.LoadGroup();
         }
     }
 }

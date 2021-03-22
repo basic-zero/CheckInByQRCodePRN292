@@ -62,6 +62,24 @@ namespace CheckInByQRCode.view
                 }
                 return;
             }
+            if (txtAction.Text.Equals("Add group"))
+            {
+                DetailPresenter detailPresenter = new DetailPresenter(this);
+                if (detailPresenter.AddGroup())
+                {
+                    this.Close();
+                }
+                return;
+            }
+            if (txtAction.Text.Equals("Update group"))
+            {
+                DetailPresenter detailPresenter = new DetailPresenter(this);
+                if (detailPresenter.UpdateGroup())
+                {
+                    this.Close();
+                }
+                return;
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

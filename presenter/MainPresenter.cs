@@ -32,6 +32,12 @@ namespace CheckInByQRCode.presenter
             addEventWindow.ShowDialog();
         }
 
+        public void ShowAddGroup()
+        {
+            DetailWindow detailWindow = new DetailWindow("Add group");
+            detailWindow.ShowDialog();
+        }
+
         public void ShowUpdateEvent()
         {
             DetailWindow detailWindow = new DetailWindow("Update event");
@@ -40,6 +46,17 @@ namespace CheckInByQRCode.presenter
             detail.DetailName = events[mainWindow.SelectIndexEvent].Name;
             detail.Desciption = events[mainWindow.SelectIndexEvent].Description;
             detail.Id = events[mainWindow.SelectIndexEvent].Id;
+            detailWindow.ShowDialog();
+        }
+
+        public void ShowUpdateGroup()
+        {
+            DetailWindow detailWindow = new DetailWindow("Update group");
+            IDetailWindow detail = detailWindow;
+            List<GroupDto> groups = (List<GroupDto>)mainWindow.GroupData;
+            detail.DetailName = groups[mainWindow.SelectIndexGroup].Name;
+            detail.Desciption = groups[mainWindow.SelectIndexGroup].Description;
+            detail.Id = groups[mainWindow.SelectIndexGroup].Id;
             detailWindow.ShowDialog();
         }
 
@@ -58,12 +75,35 @@ namespace CheckInByQRCode.presenter
             mainWindow.DataEvent = eventShowList;
         }
 
+        public void LoadGroup()
+        {
+            GroupDao groupDao = new GroupDao();
+            groupDao.MakeConnection(Properties.Resources.strConnection);
+            mainWindow.GroupData = groupDao.ReadData(((App)Application.Current).UserName, mainWindow.SearchGroup);
+            List<dynamic> groupShowList = new List<dynamic>();
+            int count = 1;
+            foreach (GroupDto groupDto in groupDao.ReadData(((App)Application.Current).UserName, mainWindow.SearchGroup))
+            {
+                groupShowList.Add(new { NO = count, Name = groupDto.Name, Description = groupDto.Description });
+                count++;
+            }
+            mainWindow.DataGroup = groupShowList;
+        }
+
         public void RemoveEvent()
         {
                 EventDao eventDao = new EventDao();
                 eventDao.MakeConnection(Properties.Resources.strConnection);
                 List<EventDto> events = (List<EventDto>)mainWindow.EventData;
                 eventDao.DeleteById(events[mainWindow.SelectIndexEvent].Id);
+        }
+
+        public void RemoveGroup()
+        {
+            GroupDao groupDao = new GroupDao();
+            groupDao.MakeConnection(Properties.Resources.strConnection);
+            List<GroupDto> groups = (List<GroupDto>)mainWindow.GroupData;
+            groupDao.DeleteById(groups[mainWindow.SelectIndexGroup].Id);
         }
 
     }
