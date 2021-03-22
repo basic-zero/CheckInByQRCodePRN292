@@ -143,5 +143,11 @@ namespace CheckInByQRCode.view
             mainPresenter.ShowUpdateGroup();
             mainPresenter.LoadGroup();
         }
+
+        private void btnProcessGroup_Click(object sender, RoutedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.ShowMemberInGroupDialog();
+        }
     }
 }

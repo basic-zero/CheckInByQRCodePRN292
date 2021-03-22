@@ -137,7 +137,7 @@
                                             Margin="2" materialDesign:HintAssist.Hint="Search" TextChanged="txtSearchGroup_TextChanged">
 
                                         </TextBox>
-                                        <Button x:Name="btnProcessGroup" 
+                                        <Button x:Name="btnProcessGroup"  Click="btnProcessGroup_Click"
                                             Style="{DynamicResource MaterialDesignRaisedDarkButton}"
                                             Width="100" Margin="2" IsEnabled="False">
                                             <materialDesign:PackIcon Kind="ArrowRightCircle" />

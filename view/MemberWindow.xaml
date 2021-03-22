@@ -1,0 +1,94 @@
+﻿<Window x:Class="CheckInByQRCode.view.MemberWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        mc:Ignorable="d" Height="420" Width="450" WindowStartupLocation="CenterScreen" WindowState="Normal"  MinHeight="620" MinWidth="900" MaxHeight="620" MaxWidth="900" Loaded="Window_Loaded" >
+    <DockPanel>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top" PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown">
+                <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Foreground="Teal" DockPanel.Dock="Left">
+                    <materialDesign:PackIcon Kind="Qrcode" />
+                </TextBlock>
+                <TextBlock MinWidth="820" Foreground="Teal" x:Name="txtAction"></TextBlock>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button PreviewMouseDown="btnMinimize_PreviewMouseDown"
+                        Style="{StaticResource MaterialDesignMenuCommandButtonStyle}" TextElement.Foreground="Teal" x:Name="btnMinimize">
+                        <materialDesign:PackIcon Kind="WindowMinimize" />
+                    </Button>
+                    <Button PreviewMouseDown="btnClose_PreviewMouseDown"
+                        Style="{StaticResource MaterialDesignMenuCommandButtonStyle}" TextElement.Foreground="Teal" x:Name="btnClose">
+                        <materialDesign:PackIcon Kind="Close" />
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+            <materialDesign:DialogHost DialogTheme="Inherit" >
+                <materialDesign:Card 
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    MaxWidth="900" MaxHeight="600"  VerticalContentAlignment="Stretch" >
+                    <DockPanel>
+                        <ToolBarTray DockPanel.Dock="Bottom">
+                            <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+                                <Button x:Name="btnAdd" 
+                                        Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                        Width="100" Margin="2">
+                                    <materialDesign:PackIcon Kind="PlusCircleOutline" />
+                                </Button>
+                                <Button  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                            Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="btnShowDeleteDialog"
+                                            Width="100" Margin="2" IsEnabled="False" >
+                                    <Button.CommandParameter>
+                                        <StackPanel  HorizontalAlignment="Center">
+                                            <TextBlock Margin="10" Foreground="White">Are you sure delete this member</TextBlock>
+                                            <StackPanel Orientation="Horizontal" Margin="35 10">
+                                                <Button x:Name="btnDelete" Click="btnDelete_Click"
+                                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                            HorizontalAlignment="Center">
+                                                            YES
+                                                </Button>
+                                                <Button
+                                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                                            IsCancel="True"
+                                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                            HorizontalAlignment="Center">
+                                                            NO
+                                                </Button>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Button.CommandParameter>
+                                    <materialDesign:PackIcon Kind="MinusCircleOutline" />
+                                </Button>
+                                <Button x:Name="btnUpdate"  
+                                        Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                        Width="100" Margin="2" IsEnabled="False">
+                                    <materialDesign:PackIcon Kind="PencilOutline" />
+                                </Button>
+                                <TextBox x:Name="txtSearch" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
+                                        Margin="2" materialDesign:HintAssist.Hint="Search" TextChanged="txtSearch_TextChanged">
+                                </TextBox>
+                                <Button x:Name="btnProcess" 
+                                        Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                        Width="100" Margin="2" IsEnabled="False">
+                                    <materialDesign:PackIcon Kind="ArrowRightCircle" />
+                                </Button>
+                            </ToolBar>
+                        </ToolBarTray>
+                        <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvData" IsReadOnly="True" SelectionChanged="gvData_SelectionChanged" >
+
+                        </DataGrid>
+                    </DockPanel>
+                </materialDesign:Card>
+            </materialDesign:DialogHost>
+        </DockPanel>
+    </DockPanel>
+</Window>

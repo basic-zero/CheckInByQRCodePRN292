@@ -106,5 +106,14 @@ namespace CheckInByQRCode.presenter
             groupDao.DeleteById(groups[mainWindow.SelectIndexGroup].Id);
         }
 
+        public void ShowMemberInGroupDialog()
+        {
+            MemberWindow memberWindow = new MemberWindow("Group member");
+            IMemberWindow member = (IMemberWindow)memberWindow;
+            List<GroupDto> groups = (List<GroupDto>)mainWindow.GroupData;
+            member.Id = groups[mainWindow.SelectIndexGroup].Id;
+            memberWindow.ShowDialog();
+        }
+
     }
 }
