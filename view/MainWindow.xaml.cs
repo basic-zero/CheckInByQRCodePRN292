@@ -149,5 +149,11 @@ namespace CheckInByQRCode.view
             MainPresenter mainPresenter = new MainPresenter(this);
             mainPresenter.ShowMemberInGroupDialog();
         }
+
+        private void btnProcessEvent_Click(object sender, RoutedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.ShowMemberInEventDialog();
+        }
     }
 }

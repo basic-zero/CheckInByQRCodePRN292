@@ -72,5 +72,49 @@ namespace CheckInByQRCode.presenter
             eventAttendeesDto.Id = detailMemberWindow.Id;
             return eventAttendeesDao.Update(eventAttendeesDto);
         }
+
+        public bool AddMemberInEvent()
+        {
+            if (detailMemberWindow.DataName.Length == 0)
+            {
+                detailMemberWindow.Status = "Member name is empty";
+                return false;
+            }
+            if (!IsValidEmail(detailMemberWindow.Email))
+            {
+                detailMemberWindow.Status = "Email invalidate";
+                return false;
+            }
+            CheckInDao checkInDao = new CheckInDao();
+            checkInDao.MakeConnection(Properties.Resources.strConnection);
+            CheckInDto checkInDto = new CheckInDto();
+            checkInDto.Name = detailMemberWindow.DataName;
+            checkInDto.Email = detailMemberWindow.Email;
+            checkInDto.Other = detailMemberWindow.Other;
+            checkInDto.EventID = detailMemberWindow.Id;
+            return checkInDao.Create(checkInDto);
+        }
+
+        public bool UpdateMemberInEvent()
+        {
+            if (detailMemberWindow.DataName.Length == 0)
+            {
+                detailMemberWindow.Status = "Member name is empty";
+                return false;
+            }
+            if (!IsValidEmail(detailMemberWindow.Email))
+            {
+                detailMemberWindow.Status = "Email invalidate";
+                return false;
+            }
+            CheckInDao checkInDao = new CheckInDao();
+            checkInDao.MakeConnection(Properties.Resources.strConnection);
+            CheckInDto checkInDto = new CheckInDto();
+            checkInDto.Name = detailMemberWindow.DataName;
+            checkInDto.Email = detailMemberWindow.Email;
+            checkInDto.Other = detailMemberWindow.Other;
+            checkInDto.EventAttendeesID = detailMemberWindow.Id;
+            return checkInDao.Update(checkInDto);
+        }
     }
 }

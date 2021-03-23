@@ -31,6 +31,22 @@ namespace CheckInByQRCode.presenter
             memberWindow.ShowData = eventAttendeesShowList;
         }
 
+        public void LoadMemberEvent()
+        {
+            CheckInDao checkInDao = new CheckInDao();
+            checkInDao.MakeConnection(Properties.Resources.strConnection);
+            memberWindow.DefaulData = checkInDao.ReadData(memberWindow.Id, memberWindow.Search);
+            List<dynamic> checkInShowList = new List<dynamic>();
+            int count = 1;
+            foreach (CheckInDto checkInDto in checkInDao.ReadData(memberWindow.Id, memberWindow.Search))
+            {
+                checkInShowList.Add(new { NO = count, Name = checkInDto.Name, Email = checkInDto.Email, Other = checkInDto.Other });
+                count++;
+            }
+            memberWindow.ShowData = checkInShowList;
+        }
+
+
         public void RemoveEventAttendees()
         {
             EventAttendeesDao eventAttendeesDao = new EventAttendeesDao();
@@ -39,9 +55,24 @@ namespace CheckInByQRCode.presenter
             eventAttendeesDao.DeleteById(eventAttendeesDtos[memberWindow.SelectedIndex].Id);
         }
 
+        public void RemoveCheckIn()
+        {
+            CheckInDao checkInDao = new CheckInDao();
+            checkInDao.MakeConnection(Properties.Resources.strConnection);
+            List<CheckInDto> checkInDtos = (List<CheckInDto>)memberWindow.DefaulData;
+            checkInDao.DeleteById(checkInDtos[memberWindow.SelectedIndex].EventAttendeesID);
+        }
+
         public void ShowAddEventAttendeesDialog()
         {
             DetailMemberWindow detailMemberWindow = new DetailMemberWindow("Add member in group");
+            detailMemberWindow.Id = memberWindow.Id;
+            detailMemberWindow.ShowDialog();
+        }
+
+        public void ShowAddCheckInDialog()
+        {
+            DetailMemberWindow detailMemberWindow = new DetailMemberWindow("Add member in event");
             detailMemberWindow.Id = memberWindow.Id;
             detailMemberWindow.ShowDialog();
         }
@@ -54,6 +85,17 @@ namespace CheckInByQRCode.presenter
             detailMemberWindow.DataName = eventAttendeesDtos[memberWindow.SelectedIndex].Name;
             detailMemberWindow.Email = eventAttendeesDtos[memberWindow.SelectedIndex].Email;
             detailMemberWindow.Other = eventAttendeesDtos[memberWindow.SelectedIndex].Other;
+            detailMemberWindow.ShowDialog();
+        }
+
+        public void ShowUpdateCheckInDialog()
+        {
+            DetailMemberWindow detailMemberWindow = new DetailMemberWindow("Update member in event");
+            List<CheckInDto> checkInDtos = (List<CheckInDto>)memberWindow.DefaulData;
+            detailMemberWindow.Id = checkInDtos[memberWindow.SelectedIndex].EventAttendeesID;
+            detailMemberWindow.DataName = checkInDtos[memberWindow.SelectedIndex].Name;
+            detailMemberWindow.Email = checkInDtos[memberWindow.SelectedIndex].Email;
+            detailMemberWindow.Other = checkInDtos[memberWindow.SelectedIndex].Other;
             detailMemberWindow.ShowDialog();
         }
     }

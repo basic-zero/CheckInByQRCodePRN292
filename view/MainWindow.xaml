@@ -82,7 +82,7 @@
                                         <TextBox x:Name="txtSearchEvent" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
                                         Margin="2" materialDesign:HintAssist.Hint="Search" TextChanged="txtSearchEvent_TextChanged">
                                         </TextBox>
-                                        <Button x:Name="btnProcessEvent" 
+                                        <Button x:Name="btnProcessEvent" Click="btnProcessEvent_Click"
                                         Style="{DynamicResource MaterialDesignRaisedDarkButton}"
                                         Width="100" Margin="2" IsEnabled="False">
                                             <materialDesign:PackIcon Kind="ArrowRightCircle" />

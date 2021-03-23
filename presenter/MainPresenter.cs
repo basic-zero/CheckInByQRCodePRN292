@@ -114,6 +114,13 @@ namespace CheckInByQRCode.presenter
             member.Id = groups[mainWindow.SelectIndexGroup].Id;
             memberWindow.ShowDialog();
         }
-
+        public void ShowMemberInEventDialog()
+        {
+            MemberWindow memberWindow = new MemberWindow("Event member");
+            IMemberWindow member = (IMemberWindow)memberWindow;
+            List<EventDto> events = (List<EventDto>)mainWindow.EventData;
+            member.Id = events[mainWindow.SelectIndexEvent].Id;
+            memberWindow.ShowDialog();
+        }
     }
 }

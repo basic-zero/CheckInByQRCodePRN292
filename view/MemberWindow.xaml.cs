@@ -60,6 +60,12 @@ namespace CheckInByQRCode.view
                 MemberPresenter memberPresenter = new MemberPresenter(this);
                 memberPresenter.LoadMemberGroup();
             }
+
+            if (txtAction.Text.Equals("Event member"))
+            {
+                MemberPresenter memberPresenter = new MemberPresenter(this);
+                memberPresenter.LoadMemberEvent();
+            }
         }
 
         private void gvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,6 +83,14 @@ namespace CheckInByQRCode.view
                 MemberPresenter memberPresenter = new MemberPresenter(this);
                 memberPresenter.RemoveEventAttendees();
                 memberPresenter.LoadMemberGroup();
+                return;
+            }
+
+            if (txtAction.Text.Equals("Event member"))
+            {
+                MemberPresenter memberPresenter = new MemberPresenter(this);
+                memberPresenter.RemoveCheckIn();
+                memberPresenter.LoadMemberEvent();
             }
         }
 
@@ -86,6 +100,14 @@ namespace CheckInByQRCode.view
             {
                 MemberPresenter memberPresenter = new MemberPresenter(this);
                 memberPresenter.LoadMemberGroup();
+                return;
+            }
+
+            if (txtAction.Text.Equals("Event member"))
+            {
+                MemberPresenter memberPresenter = new MemberPresenter(this);
+                memberPresenter.LoadMemberEvent();
+                return;
             }
         }
 
@@ -97,6 +119,13 @@ namespace CheckInByQRCode.view
                 memberPresenter.ShowAddEventAttendeesDialog();
                 memberPresenter.LoadMemberGroup();
             }
+
+            if (txtAction.Text.Equals("Event member"))
+            {
+                MemberPresenter memberPresenter = new MemberPresenter(this);
+                memberPresenter.ShowAddCheckInDialog();
+                memberPresenter.LoadMemberEvent();
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -106,6 +135,12 @@ namespace CheckInByQRCode.view
                 MemberPresenter memberPresenter = new MemberPresenter(this);
                 memberPresenter.ShowUpdateEventAttendeesDialog();
                 memberPresenter.LoadMemberGroup();
+            }
+            if (txtAction.Text.Equals("Event member"))
+            {
+                MemberPresenter memberPresenter = new MemberPresenter(this);
+                memberPresenter.ShowUpdateCheckInDialog();
+                memberPresenter.LoadMemberEvent();
             }
         }
     }

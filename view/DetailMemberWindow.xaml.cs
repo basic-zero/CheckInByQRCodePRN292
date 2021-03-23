@@ -66,6 +66,24 @@ namespace CheckInByQRCode.view
                     this.Close();
                 }
             }
+
+            if (txtAction.Text.Equals("Add member in event"))
+            {
+                DetailMemberPresenter detailMemberPresenter = new DetailMemberPresenter(this);
+                if (detailMemberPresenter.AddMemberInEvent())
+                {
+                    this.Close();
+                }
+            }
+
+            if (txtAction.Text.Equals("Update member in event"))
+            {
+                DetailMemberPresenter detailMemberPresenter = new DetailMemberPresenter(this);
+                if (detailMemberPresenter.UpdateMemberInEvent())
+                {
+                    this.Close();
+                }
+            }
         }
     }
 }
