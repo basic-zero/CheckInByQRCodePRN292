@@ -45,5 +45,16 @@ namespace CheckInByQRCode.presenter
             detailMemberWindow.Id = memberWindow.Id;
             detailMemberWindow.ShowDialog();
         }
+
+        public void ShowUpdateEventAttendeesDialog()
+        {
+            DetailMemberWindow detailMemberWindow = new DetailMemberWindow("Update member in group");
+            List<EventAttendeesDto> eventAttendeesDtos = (List<EventAttendeesDto>)memberWindow.DefaulData;
+            detailMemberWindow.Id = eventAttendeesDtos[memberWindow.SelectedIndex].Id;
+            detailMemberWindow.DataName = eventAttendeesDtos[memberWindow.SelectedIndex].Name;
+            detailMemberWindow.Email = eventAttendeesDtos[memberWindow.SelectedIndex].Email;
+            detailMemberWindow.Other = eventAttendeesDtos[memberWindow.SelectedIndex].Other;
+            detailMemberWindow.ShowDialog();
+        }
     }
 }

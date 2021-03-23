@@ -58,6 +58,14 @@ namespace CheckInByQRCode.view
                     this.Close();
                 }
             }
+            if (txtAction.Text.Equals("Update member in group"))
+            {
+                DetailMemberPresenter detailMemberPresenter = new DetailMemberPresenter(this);
+                if (detailMemberPresenter.UpdateMemberInGroup())
+                {
+                    this.Close();
+                }
+            }
         }
     }
 }
