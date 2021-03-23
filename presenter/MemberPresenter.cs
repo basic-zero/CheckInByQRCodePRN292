@@ -38,5 +38,12 @@ namespace CheckInByQRCode.presenter
             List<EventAttendeesDto> eventAttendeesDtos = (List<EventAttendeesDto>)memberWindow.DefaulData;
             eventAttendeesDao.DeleteById(eventAttendeesDtos[memberWindow.SelectedIndex].Id);
         }
+
+        public void ShowAddEventAttendeesDialog()
+        {
+            DetailMemberWindow detailMemberWindow = new DetailMemberWindow("Add member in group");
+            detailMemberWindow.Id = memberWindow.Id;
+            detailMemberWindow.ShowDialog();
+        }
     }
 }

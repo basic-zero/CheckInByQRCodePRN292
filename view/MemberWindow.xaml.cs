@@ -88,5 +88,15 @@ namespace CheckInByQRCode.view
                 memberPresenter.LoadMemberGroup();
             }
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtAction.Text.Equals("Group member"))
+            {
+                MemberPresenter memberPresenter = new MemberPresenter(this);
+                memberPresenter.ShowAddEventAttendeesDialog();
+                memberPresenter.LoadMemberGroup();
+            }
+        }
     }
 }

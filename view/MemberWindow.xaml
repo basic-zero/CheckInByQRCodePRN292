@@ -38,7 +38,7 @@
                     <DockPanel>
                         <ToolBarTray DockPanel.Dock="Bottom">
                             <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
-                                <Button x:Name="btnAdd" 
+                                <Button x:Name="btnAdd" Click="btnAdd_Click"
                                         Style="{DynamicResource MaterialDesignRaisedDarkButton}"
                                         Width="100" Margin="2">
                                     <materialDesign:PackIcon Kind="PlusCircleOutline" />
