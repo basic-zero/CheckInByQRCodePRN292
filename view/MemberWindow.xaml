@@ -76,9 +76,9 @@
                                 <TextBox x:Name="txtSearch" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
                                         Margin="2" materialDesign:HintAssist.Hint="Search" TextChanged="txtSearch_TextChanged">
                                 </TextBox>
-                                <Button x:Name="btnProcess" 
+                                <Button x:Name="btnProcess" Click="btnProcess_Click"
                                         Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                        Width="100" Margin="2" IsEnabled="False">
+                                        Width="100" Margin="2">
                                     <materialDesign:PackIcon Kind="ArrowRightCircle" />
                                 </Button>
                             </ToolBar>

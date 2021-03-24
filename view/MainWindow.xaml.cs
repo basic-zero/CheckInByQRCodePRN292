@@ -154,6 +154,7 @@ namespace CheckInByQRCode.view
         {
             MainPresenter mainPresenter = new MainPresenter(this);
             mainPresenter.ShowMemberInEventDialog();
+            mainPresenter.LoadEvent();
         }
     }
 }

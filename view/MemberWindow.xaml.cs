@@ -35,6 +35,10 @@ namespace CheckInByQRCode.view
             {
                 btnProcess.Visibility = Visibility.Hidden;
             }
+            else
+            {
+                txtSearch.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -72,7 +76,6 @@ namespace CheckInByQRCode.view
         {
             btnShowDeleteDialog.IsEnabled = gvData.SelectedIndex >= 0;
             btnUpdate.IsEnabled = gvData.SelectedIndex >= 0;
-            btnProcess.IsEnabled = gvData.SelectedIndex >= 0;
 
         }
 
@@ -141,6 +144,15 @@ namespace CheckInByQRCode.view
                 MemberPresenter memberPresenter = new MemberPresenter(this);
                 memberPresenter.ShowUpdateCheckInDialog();
                 memberPresenter.LoadMemberEvent();
+            }
+        }
+
+        private void btnProcess_Click(object sender, RoutedEventArgs e)
+        {
+            MemberPresenter memberPresenter = new MemberPresenter(this);
+            if (memberPresenter.ShowMailDialog())
+            {
+                this.Close();
             }
         }
     }

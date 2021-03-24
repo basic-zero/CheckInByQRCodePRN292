@@ -16,6 +16,7 @@
     <PackageReference Include="MailKit" Version="2.11.1" />
     <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
     <PackageReference Include="ZXing.Net" Version="0.16.6" />
   </ItemGroup>
 

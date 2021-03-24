@@ -69,7 +69,7 @@ namespace CheckInByQRCode.presenter
             int count = 1;
             foreach(EventDto eventDto in eventDao.ReadData(((App)Application.Current).UserName, mainWindow.SearchEvent))
             {
-                eventShowList.Add(new { NO=count, Name= eventDto.Name, Description= eventDto.Description});
+                eventShowList.Add(new { NO=count, Name= eventDto.Name, Description= eventDto.Description, Status= eventDto.Status});
                 count++;
             }
             mainWindow.DataEvent = eventShowList;

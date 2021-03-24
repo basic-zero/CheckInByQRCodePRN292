@@ -98,5 +98,18 @@ namespace CheckInByQRCode.presenter
             detailMemberWindow.Other = checkInDtos[memberWindow.SelectedIndex].Other;
             detailMemberWindow.ShowDialog();
         }
+
+        public bool ShowMailDialog()
+        {
+            List<CheckInDto> checkInDtos = (List<CheckInDto>)memberWindow.DefaulData;
+            if (checkInDtos.Count > 0)
+            {
+                MailWindow mailWindow = new MailWindow();
+                mailWindow.EmailData = memberWindow.DefaulData;
+                mailWindow.EventId = memberWindow.Id.ToString();
+                return (bool)mailWindow.ShowDialog();
+            }
+            return false;
+        }
     }
 }
