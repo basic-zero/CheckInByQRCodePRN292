@@ -19,10 +19,12 @@ namespace CheckInByQRCode.view
     /// </summary>
     public partial class AddEventWindow : Window, IAddEventWindow
     {
+        private object groupData;
         public string EventName { get => txtEventName.Text; set => txtEventName.Text=value; }
         public string Desciption { get => txtDesciption.Text; set => txtDesciption.Text= value; }
         public IEnumerable Group { get => lsbGroup.ItemsSource; set => lsbGroup.ItemsSource= value; }
         public string Status { get => txtStatus.Text; set => txtStatus.Text = value; }
+        public object GroupData { get => groupData; set => groupData = value; }
         public AddEventWindow()
         {
             InitializeComponent();
@@ -51,6 +53,12 @@ namespace CheckInByQRCode.view
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            AddEventPresenter addEventPresenter = new AddEventPresenter(this);
+            addEventPresenter.LoadGroup();
         }
     }
 }

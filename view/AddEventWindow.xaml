@@ -12,7 +12,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStyle="None"
-        mc:Ignorable="d"  WindowStartupLocation="CenterScreen" WindowState="Normal"  MinHeight="460" MinWidth="300" MaxHeight="460" MaxWidth="300">
+        mc:Ignorable="d"  WindowStartupLocation="CenterScreen" WindowState="Normal"  MinHeight="460" MinWidth="300" MaxHeight="460" MaxWidth="300" Loaded="Window_Loaded">
     <DockPanel>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top" PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown">
@@ -53,7 +53,7 @@
                         <TextBlock>
                             Group join on event
                         </TextBlock>
-                        <ListBox materialDesign:ListBoxAssist.IsToggle="True" x:Name="lsbGroup"
+                        <ListBox materialDesign:ListBoxAssist.IsToggle="False" x:Name="lsbGroup" Foreground="Black"
                                  Height="100" MinWidth="250" MaxWidth="250">
                             
                         </ListBox>

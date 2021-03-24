@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace CheckInByQRCode.view
 {
     /// <summary>
-    /// Interaction logic for EventDetailWindow.xaml
+    /// Interaction logic for MailWindow.xaml
     /// </summary>
-    public partial class EventDetailWindow : Window
+    public partial class MailWindow : Window
     {
-        public EventDetailWindow()
+        public MailWindow()
         {
             InitializeComponent();
         }

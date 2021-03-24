@@ -61,6 +61,24 @@ namespace CheckInByQRCode.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to checkInQRCodeApp@gmail.com.
+        /// </summary>
+        internal static string email {
+            get {
+                return ResourceManager.GetString("email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to check123456.
+        /// </summary>
+        internal static string password {
+            get {
+                return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data Source=localhost\sqlexpress;Initial Catalog=CheckInByQRCode;User ID=sa;Password=sa.
         /// </summary>
         internal static string strConnection {

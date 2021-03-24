@@ -16,8 +16,6 @@ namespace CheckInByQRCode
     /// </summary>
     public partial class LoginWindow : Window, ILoginWindow
     {
-        private bool drag = false; // determine if we should be moving the form
-        private Point startPoint = new Point(0, 0); // also for the moving
 
         public string UserName { get { if (tcMainTab.SelectedIndex == 0) { return txtUserName.Text; } else { return txtUserNameSignUp.Text; }  }  set { if (tcMainTab.SelectedIndex == 0) { txtUserName.Text = value; } else { txtUserNameSignUp.Text = value; } } }
         public string Password { get { if (tcMainTab.SelectedIndex == 0) { return txtPassword.Password; } else { return txtPasswordSignUp.Password; } } set { if (tcMainTab.SelectedIndex == 0) { txtPassword.Password = value; } else { txtPasswordSignUp.Password = value; } } }

@@ -14,5 +14,7 @@ namespace CheckInByQRCode.view
         IEnumerable Group { get; set; }
 
         string Status { get; set; }
+
+        object GroupData { get; set; }
     }
 }
