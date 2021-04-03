@@ -79,7 +79,7 @@ namespace CheckInByQRCode.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Source=localhost\sqlexpress;Initial Catalog=CheckInByQRCode;User ID=sa;Password=sa.
+        ///   Looks up a localized string similar to server=SE140693\MSSQLSERVER2;database=CheckInByQRCode;uid=sa;pwd=27112000.
         /// </summary>
         internal static string strConnection {
             get {

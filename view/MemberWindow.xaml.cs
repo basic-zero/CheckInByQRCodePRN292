@@ -31,13 +31,14 @@ namespace CheckInByQRCode.view
         {
             InitializeComponent();
             txtAction.Text = action;
-            if(action.Equals("Group member"))
+            if(action.Equals("Event member"))
             {
-                btnProcess.Visibility = Visibility.Hidden;
+                txtSearch.Visibility = Visibility.Collapsed;
+                btnProcess.ToolTip = "Send mail";
             }
             else
             {
-                txtSearch.Visibility = Visibility.Collapsed;
+                btnProcess.ToolTip = "Import data";
             }
         }
 
@@ -150,10 +151,20 @@ namespace CheckInByQRCode.view
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
             MemberPresenter memberPresenter = new MemberPresenter(this);
-            if (memberPresenter.ShowMailDialog())
+            if(txtAction.Text.Equals("Event member"))
             {
-                this.Close();
+                if (memberPresenter.ShowMailDialog())
+                {
+                    this.Close();
+                }
             }
+            else
+            {
+                memberPresenter.ImportDataFromExcel();
+                memberPresenter.LoadMemberGroup();
+            }
+
+            
         }
     }
 }

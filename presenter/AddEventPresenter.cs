@@ -27,7 +27,7 @@ namespace CheckInByQRCode.presenter
             }
             if (addEventWindow.EventName.Length > 50)
             {
-                addEventWindow.Status = "Event name have lenght lower than 50";
+                addEventWindow.Status = "Event name have length lower than 50";
                 return false;
             }
             EventDao eventDao = new EventDao();

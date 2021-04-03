@@ -13,10 +13,13 @@
 
   <ItemGroup>
     <PackageReference Include="Dragablz" Version="0.0.3.223" />
+    <PackageReference Include="EPPlus" Version="5.5.5" />
     <PackageReference Include="MailKit" Version="2.11.1" />
     <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+    <PackageReference Include="VisioForge.DotNet.Core.TRIAL" Version="14.0.23" />
+    <PackageReference Include="WebCamSharp" Version="1.0.0" />
     <PackageReference Include="ZXing.Net" Version="0.16.6" />
   </ItemGroup>
 
@@ -26,12 +29,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseAss\DatabaseAss\DatabaseAss.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Reference Include="DatabaseAss">
+      <HintPath>..\DatabaseAss\DatabaseAss\bin\Debug\netcoreapp3.1\DatabaseAss.dll</HintPath>
+    </Reference>
     <Reference Include="EmailLibrary">
       <HintPath>C:\Users\Gia Nguyen\Downloads\EmailLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelConnection">
+      <HintPath>C:\Users\Gia Nguyen\Downloads\ExcelConnection.dll</HintPath>
     </Reference>
     <Reference Include="QRModuleLib">
       <HintPath>C:\Users\Gia Nguyen\Downloads\QRModuleLib.dll</HintPath>

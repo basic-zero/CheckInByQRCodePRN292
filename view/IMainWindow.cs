@@ -25,5 +25,7 @@ namespace CheckInByQRCode.view
         object EventData { get; set; }
         object GroupData { get; set; }
         object OldEventData { get; set; }
+
+        int TabIndexOfMenu { get; set; }
     }
 }

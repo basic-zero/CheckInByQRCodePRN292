@@ -33,7 +33,8 @@ namespace CheckInByQRCode.presenter
             {
                 try
                 {
-                    QRModuleLib.QRModule.CreateQRCode(checkInDto.EventAttendeesID.ToString(), checkInDto.EventAttendeesID + ".png", mailWindow.EventId);
+                    DataEncryption dataEncryption = new DataEncryption(checkInDto.EventAttendeesID.ToString(),null);
+                    QRModuleLib.QRModule.CreateQRCode(dataEncryption.OutputCode, checkInDto.EventAttendeesID + ".png", mailWindow.EventId);
                     EmailLibrary.Email.SendEMail(Properties.Resources.email, Properties.Resources.password, checkInDto.Email, mailWindow.Subject, mailWindow.MailContent, mailWindow.EventId + "/" + checkInDto.EventAttendeesID + ".png");
                 }
                 catch

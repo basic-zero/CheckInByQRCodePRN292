@@ -84,7 +84,7 @@
                                         </TextBox>
                                         <Button x:Name="btnProcessEvent" Click="btnProcessEvent_Click"
                                         Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                        Width="100" Margin="2" IsEnabled="False">
+                                        Width="100" Margin="2" IsEnabled="False" ToolTip="Event detail">
                                             <materialDesign:PackIcon Kind="ArrowRightCircle" />
                                         </Button>
                                     </ToolBar>
@@ -139,7 +139,7 @@
                                         </TextBox>
                                         <Button x:Name="btnProcessGroup"  Click="btnProcessGroup_Click"
                                             Style="{DynamicResource MaterialDesignRaisedDarkButton}"
-                                            Width="100" Margin="2" IsEnabled="False">
+                                            Width="100" Margin="2" IsEnabled="False" ToolTip="Group detail">
                                             <materialDesign:PackIcon Kind="ArrowRightCircle" />
                                         </Button>
                                     </ToolBar>
@@ -154,11 +154,16 @@
                                 <ToolBarTray DockPanel.Dock="Bottom">
                                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
                                         <TextBox x:Name="txtSearchOldEvent" materialDesign:TextFieldAssist.HasClearButton="True" Width="250" 
-                                            Margin="2" materialDesign:HintAssist.Hint="Search">
+                                            Margin="2" materialDesign:HintAssist.Hint="Search" TextChanged="txtSearchOldEvent_TextChanged">
                                         </TextBox>
+                                        <Button x:Name="btnExportReport" Click="btnExportReport_Click"
+                                        Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                                        Width="100" Margin="2" IsEnabled="False" ToolTip="Export report">
+                                            <materialDesign:PackIcon Kind="ArrowRightCircle" />
+                                        </Button>
                                     </ToolBar>
                                 </ToolBarTray>
-                                <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvOldEvent">
+                                <DataGrid  CanUserAddRows="False" CanUserDeleteRows="False"  SelectionUnit="FullRow"  SelectionMode="Single" x:Name="gvOldEvent" SelectionChanged="gvOldEvent_SelectionChanged">
 
                                 </DataGrid>
                             </DockPanel>

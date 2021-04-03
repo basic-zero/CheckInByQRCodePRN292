@@ -1,6 +1,7 @@
 ﻿using CheckInByQRCode.view;
 using DatabaseAss.dao;
 using DatabaseAss.dto;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -121,6 +122,80 @@ namespace CheckInByQRCode.presenter
             List<EventDto> events = (List<EventDto>)mainWindow.EventData;
             member.Id = events[mainWindow.SelectIndexEvent].Id;
             memberWindow.ShowDialog();
+        }
+
+        public bool ShowCheckInDialog()
+        {
+            CheckInWindow checkInWindow = new CheckInWindow();
+            List<EventDto> events = (List<EventDto>)mainWindow.EventData;
+            checkInWindow.EventID = events[mainWindow.SelectIndexEvent].Id;
+           return (bool)checkInWindow.ShowDialog();
+        }
+        public void ShowProcessEvent()
+        {
+            List<EventDto> events = (List<EventDto>)mainWindow.EventData;
+            if (events[mainWindow.SelectIndexEvent].Status.Equals("new"))
+            {
+                ShowMemberInEventDialog();
+            }
+            else
+            {
+                if (ShowCheckInDialog())
+                {
+                    LoadOldEvent();
+                    mainWindow.TabIndexOfMenu = 2;
+                    
+                }
+                
+            }
+        }
+
+        public void LoadOldEvent()
+        {
+            EventDao eventDao = new EventDao();
+            eventDao.MakeConnection(Properties.Resources.strConnection);
+            mainWindow.OldEventData = eventDao.ReadOldEventData(((App)Application.Current).UserName, mainWindow.SearchOldEvent);
+            List<dynamic> oldEventShowList = new List<dynamic>();
+            int count = 1;
+            foreach (EventDto eventDto in eventDao.ReadOldEventData(((App)Application.Current).UserName, mainWindow.SearchOldEvent))
+            {
+                oldEventShowList.Add(new { NO = count, Name = eventDto.Name, Description = eventDto.Description});
+                count++;
+            }
+            mainWindow.DataOldEvent = oldEventShowList;
+        }
+
+        public void ExportReportToExcel()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx";
+            if ((bool)saveFileDialog.ShowDialog())
+            {
+                try
+                {
+                    ExcelConnection.ExcelConnect excelConnect = new ExcelConnection.ExcelConnect();
+                    CheckInDao checkInDao = new CheckInDao();
+                    checkInDao.MakeConnection(Properties.Resources.strConnection);
+                    List<EventDto> events = (List<EventDto>)mainWindow.OldEventData;
+                    List<CheckInDto> checkInDtos = checkInDao.ReadData(events[mainWindow.SelectIndexOldEvent].Id, "");
+                    List<EventAttendeesDtoToExportReport> eventAttendeesDtoToExportReports = new List<EventAttendeesDtoToExportReport>();
+                    foreach (CheckInDto checkInDto in checkInDtos)
+                    {
+                        EventAttendeesDtoToExportReport eventAttendeesDtoToExportReport = new EventAttendeesDtoToExportReport();
+                        eventAttendeesDtoToExportReport.Name = checkInDto.Name;
+                        eventAttendeesDtoToExportReport.Email = checkInDto.Email;
+                        eventAttendeesDtoToExportReport.Other = checkInDto.Other;
+                        eventAttendeesDtoToExportReport.IsChecked = checkInDto.Check;
+                        eventAttendeesDtoToExportReports.Add(eventAttendeesDtoToExportReport);
+                    }
+                    excelConnect.ExportExcel(eventAttendeesDtoToExportReports, saveFileDialog.FileName);
+
+                }
+                catch (Exception e)
+                {
+                    
+                }
+            }
         }
     }
 }

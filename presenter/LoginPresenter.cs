@@ -76,7 +76,7 @@ namespace CheckInByQRCode.presenter
             }
             if (loginWindow.UserName.Length <= 7 || loginWindow.UserName.Length > 50)
             {
-                loginWindow.StatusSignUp = "Username have lenght from 8 to 50";
+                loginWindow.StatusSignUp = "Username have length from 8 to 50";
                 return false;
             }
             if (loginWindow.Password.Length == 0)
@@ -86,7 +86,7 @@ namespace CheckInByQRCode.presenter
             }
             if (loginWindow.Password.Length <= 7 || loginWindow.UserName.Length > 30)
             {
-                loginWindow.StatusSignUp = "Password have lenght from 8 to 30";
+                loginWindow.StatusSignUp = "Password have length from 8 to 30";
                 return false;
             }
             if (!loginWindow.RePassword.Equals(loginWindow.Password))
@@ -99,9 +99,9 @@ namespace CheckInByQRCode.presenter
             UserDto user = new UserDto(loginWindow.Fullname, loginWindow.UserName, loginWindow.Password);
             if (userDao.Create(user))
             {
-                MainWindow mainWindow = new MainWindow();
                 ((App)Application.Current).FullName = loginWindow.Fullname;
                 ((App)Application.Current).UserName = loginWindow.UserName;
+                MainWindow mainWindow = new MainWindow();
                 loginWindow.Hidden = System.Windows.Visibility.Hidden;
                 mainWindow.ShowDialog();
                 return true;

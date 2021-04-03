@@ -37,6 +37,7 @@ namespace CheckInByQRCode.view
         public object EventData { get => eventData; set => eventData=value; }
         public object GroupData { get => groupData; set => groupData=value; }
         public object OldEventData { get => oldEventData; set => oldEventData=value; }
+        public int TabIndexOfMenu { get => tcMainTab.SelectedIndex; set => tcMainTab.SelectedIndex=value; }
 
         public MainWindow()
         {
@@ -74,6 +75,7 @@ namespace CheckInByQRCode.view
             MainPresenter mainPresenter = new MainPresenter(this);
             mainPresenter.ShowAddEvent();
             mainPresenter.LoadEvent();
+           
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -81,6 +83,7 @@ namespace CheckInByQRCode.view
             MainPresenter mainPresenter = new MainPresenter(this);
             mainPresenter.LoadEvent();
             mainPresenter.LoadGroup();
+            mainPresenter.LoadOldEvent();
         }
 
         private void txtSearchEvent_TextChanged(object sender, TextChangedEventArgs e)
@@ -153,8 +156,27 @@ namespace CheckInByQRCode.view
         private void btnProcessEvent_Click(object sender, RoutedEventArgs e)
         {
             MainPresenter mainPresenter = new MainPresenter(this);
-            mainPresenter.ShowMemberInEventDialog();
+            mainPresenter.ShowProcessEvent();
             mainPresenter.LoadEvent();
         }
+
+        private void btnExportReport_Click(object sender, RoutedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+           
+            mainPresenter.ExportReportToExcel();
+        }
+
+        private void txtSearchOldEvent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MainPresenter mainPresenter = new MainPresenter(this);
+            mainPresenter.LoadOldEvent();
+        }
+
+        private void gvOldEvent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnExportReport.IsEnabled = gvOldEvent.SelectedIndex >= 0;
+        }
+
     }
 }

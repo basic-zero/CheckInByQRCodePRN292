@@ -1,9 +1,11 @@
 ﻿using CheckInByQRCode.view;
 using DatabaseAss.dao;
 using DatabaseAss.dto;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace CheckInByQRCode.presenter
 {
@@ -110,6 +112,35 @@ namespace CheckInByQRCode.presenter
                 return (bool)mailWindow.ShowDialog();
             }
             return false;
+        }
+
+        public void ImportDataFromExcel()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx";
+            if ((bool)openFileDialog.ShowDialog())
+            {
+                try
+                {
+                    ExcelConnection.ExcelConnect excelConnect = new ExcelConnection.ExcelConnect();
+                    List<EventAttendeesDtoExcel> eventAttendeesDtoExcels = excelConnect.ImportExcel<EventAttendeesDtoExcel>(openFileDialog.FileName);
+                    EventAttendeesDao eventAttendeesDao = new EventAttendeesDao();
+                    eventAttendeesDao.MakeConnection(Properties.Resources.strConnection);
+                    foreach (EventAttendeesDtoExcel eventAttendeesDtoExcel in eventAttendeesDtoExcels)
+                    {
+                        EventAttendeesDto eventAttendeesDto = new EventAttendeesDto();
+                        eventAttendeesDto.Name = eventAttendeesDtoExcel.Name;
+                        eventAttendeesDto.Email = eventAttendeesDtoExcel.Email;
+                        eventAttendeesDto.Other = eventAttendeesDtoExcel.Other;
+                        eventAttendeesDto.GroupID = memberWindow.Id;
+                        eventAttendeesDao.Create(eventAttendeesDto);
+                    }
+                }
+               catch(Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            }
         }
     }
 }
